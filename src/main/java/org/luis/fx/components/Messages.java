@@ -15,7 +15,6 @@ import org.luis.fx.components.message.Type;
 
 public class Messages extends Pane {
 
-    private final Queue<Message> queue = new ConcurrentLinkedDeque<>();
     private final HBox hbox = new HBox();
 
     public Messages() {
@@ -23,7 +22,11 @@ public class Messages extends Pane {
 
         hbox.setSpacing(10d);
         getChildren().add(hbox);
-
+        
+        this.setVisible(false);
+        
+        hbox.setPrefHeight(getHeight());
+        hbox.setPrefWidth(getWidth());
     }
 
     public void showMessage(final String msg) {
@@ -31,19 +34,24 @@ public class Messages extends Pane {
     }
 
     public void showMessage(final String msg, final Type type) {
-
+        
+        final Messages myself = this;
+        
+        myself.setVisible(true);
+        
         final Message message = new Message(msg, type);
-
-        FadeTransition startFade = new FadeTransition(Duration.millis(200), message);
+        
+        final FadeTransition startFade = new FadeTransition(Duration.millis(200), message);
         startFade.setFromValue(0d);
         startFade.setToValue(1d);
         startFade.play();
+        hbox.getChildren().add(message);
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), "showing", new EventHandler<ActionEvent>() {
-            
+
             @Override
             public void handle(ActionEvent event) {
-            
+
                 FadeTransition finalFade = new FadeTransition(Duration.millis(200), message);
                 finalFade.setFromValue(1);
                 finalFade.setToValue(0);
@@ -55,13 +63,15 @@ public class Messages extends Pane {
                     public void handle(ActionEvent event) {
                         message.setVisible(false);
                         hbox.getChildren().remove(message);
-
+                        if (hbox.getChildren().isEmpty()) {
+                            myself.setVisible(false);
+                        }
                     }
                 });
 
             }
         }));
-        
+
         timeline.play();
 
     }

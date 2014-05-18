@@ -4,6 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -46,17 +47,18 @@ public class Messages extends Pane {
         hbox.getChildren().add(message);
 
         updateHeigth(message);
-
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), "showing", new EventHandler<ActionEvent>() {
+        
+        
+        EventHandler finishEvt = new EventHandler() {
 
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(Event event) {
 
                 final FadeTransition finalFade = new FadeTransition(Duration.millis(200), message);
                 finalFade.setFromValue(1);
                 finalFade.setToValue(0);
                 finalFade.play();
-
+                
                 finalFade.setOnFinished(new EventHandler<ActionEvent>() {
 
                     @Override
@@ -71,8 +73,12 @@ public class Messages extends Pane {
                 });
 
             }
-        }));
-
+        };
+        
+        
+        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), "showing", finishEvt));
+        message.setOnMouseReleased(finishEvt);
+        
         timeline.play();
 
     }

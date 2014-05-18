@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import org.luis.fx.components.message.Type;
@@ -42,7 +44,7 @@ public class Message extends Pane {
             log.log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex);
         }
-
+        
         set(msg, type);
     }
 

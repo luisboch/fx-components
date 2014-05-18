@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -8,18 +9,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root prefHeight="89.0" prefWidth="300.0" style="-fx-background-color: #FFA;" type="Pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="90" minHeight="90.0" minWidth="300.0" prefHeight="90" prefWidth="300.0" type="Pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="89.0" prefWidth="300.0">
+      <HBox prefHeight="90" prefWidth="300.0" style="-fx-background-color: #FFA; -fx-border-radius: 5; -fx-padding: 10;-fx-background-radius: 10">
          <children>
-            <Pane prefHeight="89.0" prefWidth="234.0">
+            <FlowPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="89.0" prefWidth="234.0">
                <children>
-                  <Label fx:id="lblMsg" alignment="TOP_LEFT" layoutX="11.0" layoutY="9.0" prefHeight="70.0" prefWidth="205.0" text="Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus " wrapText="true" />
+                  <Label fx:id="lblMsg" alignment="TOP_LEFT" layoutX="11.0" layoutY="9.0" prefWidth="205.0" text="Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus Lorem ipsus " wrapText="true" />
                </children>
-            </Pane>
-            <FlowPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="89.0" prefWidth="58.0">
+            </FlowPane>
+            <FlowPane fx:id="flowPaneImgIcon" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="89.0" prefWidth="58.0">
                <children>
-                  <ImageView fx:id="imgIcon" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/info_32.png" />
                      </image>
@@ -29,4 +30,7 @@
          </children>
       </HBox>
    </children>
+   <effect>
+      <DropShadow offsetX="2" offsetY="6" color="#666" />
+   </effect>
 </fx:root>

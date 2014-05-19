@@ -54,7 +54,7 @@ public class Messages extends Pane {
             @Override
             public void handle(Event event) {
 
-                final FadeTransition finalFade = new FadeTransition(Duration.millis(200), message);
+                final FadeTransition finalFade = new FadeTransition(Duration.millis(600), message);
                 finalFade.setFromValue(1);
                 finalFade.setToValue(0);
                 finalFade.play();

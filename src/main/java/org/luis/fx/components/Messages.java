@@ -3,6 +3,7 @@ package org.luis.fx.components;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -35,20 +36,12 @@ public class Messages extends Pane {
 
         final Messages myself = this;
 
-        myself.setVisible(true);
-
         final Message message = new Message(msg, type);
 
         final FadeTransition startFade = new FadeTransition(Duration.millis(200), message);
         startFade.setFromValue(0d);
         startFade.setToValue(1d);
-        startFade.play();
-        
-        hbox.getChildren().add(message);
 
-        updateHeigth(message);
-        
-        
         EventHandler finishEvt = new EventHandler() {
 
             @Override
@@ -58,7 +51,7 @@ public class Messages extends Pane {
                 finalFade.setFromValue(1);
                 finalFade.setToValue(0);
                 finalFade.play();
-                
+
                 finalFade.setOnFinished(new EventHandler<ActionEvent>() {
 
                     @Override
@@ -74,12 +67,21 @@ public class Messages extends Pane {
 
             }
         };
-        
-        
-        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), "showing", finishEvt));
+
+        final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(15), "showing", finishEvt));
         message.setOnMouseReleased(finishEvt);
-        
-        timeline.play();
+
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                myself.setVisible(true);
+                startFade.play();
+                hbox.getChildren().add(message);
+                updateHeigth(message);
+                timeline.play();
+            }
+        });
 
     }
 
@@ -95,6 +97,6 @@ public class Messages extends Pane {
 
         hbox.setMinHeight(height);
         this.setMinHeight(height);
-        
+
     }
 }

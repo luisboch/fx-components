@@ -18,7 +18,7 @@ public class FluidScrollPane extends javafx.scene.control.ScrollPane {
 
     private Pos originalScrollPos;
 
-    private double incrementScrollFactor = 0d;
+    private double incrementScrollFactor = 1.5d;
 
     public FluidScrollPane() {
         super();

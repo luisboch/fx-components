@@ -1,17 +1,15 @@
 package org.luis.fx.components.test;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.junit.Test;
 import org.luis.fx.components.FluidScrollPane;
+import org.luis.fx.components.Messages;
+import org.luis.fx.components.message.Type;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -36,44 +34,32 @@ public class MainTest extends Application {
         pane.setMaxHeight(400);
         pane.setMaxWidth(600);
 
-        final FlowPane flowPane = new FlowPane();
-        final FluidScrollPane scrollPane = new FluidScrollPane(flowPane);
+        final Messages m = new Messages();
 
-        scrollPane.setIncrementScrollFactor(1.5);
+        AnchorPane.setRightAnchor(m, 0d);
+        AnchorPane.setTopAnchor(m, 0d);
+
+        pane.getChildren().add(m);
         
-        AnchorPane.setBottomAnchor(scrollPane, 0d);
-        AnchorPane.setTopAnchor(scrollPane, 0d);
-        AnchorPane.setLeftAnchor(scrollPane, 0d);
-        AnchorPane.setRightAnchor(scrollPane, 0d);
+        pane.setOnMouseClicked((e) -> {
+            m.showMessage("Clicked!");
+        });
+        
+        pane.setOnMouseReleased((e) -> {
+            m.showMessage("Released!", Type.ERROR);
+        });
 
-        final Scene scene = new Scene(scrollPane);
-
-        flowPane.setOrientation(Orientation.VERTICAL);
-
-        for (int i = 0; i < 30; i++) {
-            final Pane p = new Pane();
-
-            p.setPrefHeight(80);
-            p.setPrefWidth(200);
-            p.setStyle("-fx-background-color: " + ((i % 2) == 0 ? "#FFF" : "#AAA"));
-
-            p.setOnMouseClicked((e) -> {
-                System.out.println("Child clicked");
-            });
-
-            p.setOnMouseReleased((e) -> {
-                System.out.println("Child clicked");
-            });
-            flowPane.getChildren().add(p);
-        }
-
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(pane));
         primaryStage.show();
 
     }
 
 //    @Test
     public void test() {
+
+    }
+
+    public static void main(String[] args) {
         Application.launch();
     }
 }

@@ -42,7 +42,7 @@ public class Messages extends Pane {
         startFade.setFromValue(0d);
         startFade.setToValue(1d);
 
-        EventHandler finishEvt = new EventHandler() {
+        final EventHandler finishEvt = new EventHandler() {
 
             @Override
             public void handle(Event event) {

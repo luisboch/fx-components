@@ -53,23 +53,23 @@ public class Message extends Pane {
             flowPaneImgIcon.getChildren().clear();
             switch (type) {
                 case ERROR:
-                    final Image error = new Image(Message.class.getResource("/image/error_32.png").getPath());
+                    final Image error = new Image(getClass().getClassLoader().getResourceAsStream("image/error_32.png"));
                     final ImageView imgError = new ImageView(error);
                     flowPaneImgIcon.getChildren().add(imgError);
                     break;
                 case SUCCESS:
-                    final Image success = new Image(Message.class.getResource("/image/success_32.png").getPath());
+                    final Image success = new Image(getClass().getClassLoader().getResourceAsStream("/image/success_32.png"));
                     final ImageView imgSuccess = new ImageView(success);
                     flowPaneImgIcon.getChildren().add(imgSuccess);
                     break;
                 case WARNING:
-                    final Image warn = new Image(Message.class.getResource("/image/warning_32.png").getPath());
+                    final Image warn = new Image(getClass().getClassLoader().getResourceAsStream("/image/warning_32.png"));
                     final ImageView imgWarn = new ImageView(warn);
                     flowPaneImgIcon.getChildren().add(imgWarn);
                     break;
 
                 default:
-                    final Image info = new Image(Message.class.getResource("/image/info_32.png").getPath());
+                    final Image info = new Image(getClass().getClassLoader().getResourceAsStream("/image/info_32.png"));
                     final ImageView imgInfo = new ImageView(info);
                     flowPaneImgIcon.getChildren().add(imgInfo);
                     break;

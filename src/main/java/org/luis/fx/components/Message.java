@@ -58,18 +58,18 @@ public class Message extends Pane {
                     flowPaneImgIcon.getChildren().add(imgError);
                     break;
                 case SUCCESS:
-                    final Image success = new Image(getClass().getClassLoader().getResourceAsStream("/image/success_32.png"));
+                    final Image success = new Image(getClass().getClassLoader().getResourceAsStream("image/success_32.png"));
                     final ImageView imgSuccess = new ImageView(success);
                     flowPaneImgIcon.getChildren().add(imgSuccess);
                     break;
                 case WARNING:
-                    final Image warn = new Image(getClass().getClassLoader().getResourceAsStream("/image/warning_32.png"));
+                    final Image warn = new Image(getClass().getClassLoader().getResourceAsStream("image/warning_32.png"));
                     final ImageView imgWarn = new ImageView(warn);
                     flowPaneImgIcon.getChildren().add(imgWarn);
                     break;
 
                 default:
-                    final Image info = new Image(getClass().getClassLoader().getResourceAsStream("/image/info_32.png"));
+                    final Image info = new Image(getClass().getClassLoader().getResourceAsStream("image/info_32.png"));
                     final ImageView imgInfo = new ImageView(info);
                     flowPaneImgIcon.getChildren().add(imgInfo);
                     break;
